@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sprint Burndown Chart</title>
+  <style>
+    :root{
+      --bg:#f6f8fa;
+      --surface:#ffffff;
+      --text:#1f2328;
+      --muted:#59636e;
+      --border:#d0d7de;
+      --grid:#eaeef2;
+      --ideal:#0969da;
+      --actual:#1a7f37;
+      --accent:#8250df;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      padding:32px;
+    }
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+    }
+    .card{
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      box-shadow:0 1px 2px rgba(16,24,40,.04);
+      overflow:hidden;
+    }
+    .header{
+      padding:22px 24px 14px;
+      border-bottom:1px solid var(--border);
+    }
+    .eyebrow{
+      font-size:12px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      margin-bottom:6px;
+    }
+    h1{
+      margin:0 0 8px;
+      font-size:28px;
+      line-height:1.2;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+    }
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    .pill{
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:12px;
+      background:#fff;
+    }
+    .chart-wrap{
+      padding:24px;
+    }
+    .legend{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin-bottom:18px;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .legend-line{
+      width:28px;
+      height:0;
+      border-top:3px solid;
+      border-radius:2px;
+    }
+    .legend-line.ideal{ border-color:var(--ideal); }
+    .legend-line.actual{ border-color:var(--actual); }
+    svg{
+      width:100%;
+      height:auto;
+      display:block;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+    }
+    .footer{
+      padding:0 24px 24px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .footer strong{ color:var(--text); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <div class="eyebrow">GitHub Sprint Report Mockup</div>
+        <h1>Burndown Chart — Sprint Milestone</h1>
+        <div class="sub">
+          Example burndown chart for your Agile final project sprint. This shows a 2-week sprint with 16 total story points,
+          an ideal burn line, and an actual burn based on your simulated sprint progress.
+        </div>
+        <div class="meta">
+          <span class="pill">Milestone: <strong>Sprint</strong></span>
+          <span class="pill">Duration: <strong>2 weeks</strong></span>
+          <span class="pill">Total Story Points: <strong>16</strong></span>
+          <span class="pill">Stories in Sprint: <strong>4</strong></span>
+        </div>
+      </div>
+
+      <div class="chart-wrap">
+        <div class="legend">
+          <div class="legend-item"><span class="legend-line ideal"></span> Ideal burn</div>
+          <div class="legend-item"><span class="legend-line actual"></span> Actual remaining</div>
+        </div>
+
+        <svg viewBox="0 0 980 560" aria-label="Burndown chart">
+          <!-- background -->
+          <rect x="0" y="0" width="980" height="560" fill="#ffffff"/>
+
+          <!-- chart area -->
+          <!-- margins: left 80 right 40 top 30 bottom 70 -->
+          <g>
+            <!-- horizontal grid -->
+            <line x1="80" y1="70" x2="940" y2="70" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="80" y1="162.5" x2="940" y2="162.5" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="80" y1="255" x2="940" y2="255" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="80" y1="347.5" x2="940" y2="347.5" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="80" y1="440" x2="940" y2="440" stroke="#eaeef2" stroke-width="1"/>
+
+            <!-- vertical grid -->
+            <line x1="80" y1="70" x2="80" y2="440" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="252" y1="70" x2="252" y2="440" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="424" y1="70" x2="424" y2="440" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="596" y1="70" x2="596" y2="440" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="768" y1="70" x2="768" y2="440" stroke="#eaeef2" stroke-width="1"/>
+            <line x1="940" y1="70" x2="940" y2="440" stroke="#eaeef2" stroke-width="1"/>
+
+            <!-- axes -->
+            <line x1="80" y1="440" x2="940" y2="440" stroke="#59636e" stroke-width="1.5"/>
+            <line x1="80" y1="70" x2="80" y2="440" stroke="#59636e" stroke-width="1.5"/>
+
+            <!-- ideal line -->
+            <polyline
+              fill="none"
+              stroke="#0969da"
+              stroke-width="4"
+              points="80,70 252,144 424,218 596,292 768,366 940,440" />
+
+            <!-- actual line -->
+            <!-- Remaining points by week marker: 16,16,11,8,8,5 -->
+            <polyline
+              fill="none"
+              stroke="#1a7f37"
+              stroke-width="4"
+              points="80,70 252,70 424,185.6 596,255 768,255 940,324.4" />
+
+            <!-- actual markers -->
+            <circle cx="80" cy="70" r="5" fill="#1a7f37"/>
+            <circle cx="252" cy="70" r="5" fill="#1a7f37"/>
+            <circle cx="424" cy="185.6" r="5" fill="#1a7f37"/>
+            <circle cx="596" cy="255" r="5" fill="#1a7f37"/>
+            <circle cx="768" cy="255" r="5" fill="#1a7f37"/>
+            <circle cx="940" cy="324.4" r="5" fill="#1a7f37"/>
+
+            <!-- y labels -->
+            <text x="64" y="444" text-anchor="end" font-size="12" fill="#59636e">0</text>
+            <text x="64" y="351.5" text-anchor="end" font-size="12" fill="#59636e">4</text>
+            <text x="64" y="259" text-anchor="end" font-size="12" fill="#59636e">8</text>
+            <text x="64" y="166.5" text-anchor="end" font-size="12" fill="#59636e">12</text>
+            <text x="64" y="74" text-anchor="end" font-size="12" fill="#59636e">16</text>
+
+            <!-- x labels -->
+            <text x="80" y="470" text-anchor="middle" font-size="12" fill="#59636e">Start</text>
+            <text x="252" y="470" text-anchor="middle" font-size="12" fill="#59636e">Day 3</text>
+            <text x="424" y="470" text-anchor="middle" font-size="12" fill="#59636e">Day 5</text>
+            <text x="596" y="470" text-anchor="middle" font-size="12" fill="#59636e">Day 8</text>
+            <text x="768" y="470" text-anchor="middle" font-size="12" fill="#59636e">Day 10</text>
+            <text x="940" y="470" text-anchor="middle" font-size="12" fill="#59636e">End</text>
+
+            <!-- axis titles -->
+            <text x="510" y="520" text-anchor="middle" font-size="13" fill="#1f2328">Sprint Timeline</text>
+            <text x="20" y="255" transform="rotate(-90 20 255)" text-anchor="middle" font-size="13" fill="#1f2328">Remaining Story Points</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="footer">
+        <strong>Suggested submission use:</strong> Open this file in Chrome, zoom to 100% or 125%, and take a screenshot.
+        This is styled to look polished and readable for Task 10: submit the burndown chart for the sprint or milestone.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
